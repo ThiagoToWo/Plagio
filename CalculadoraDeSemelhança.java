@@ -1,34 +1,32 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintStream;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
 
+import javax.swing.JDialog;
+import javax.swing.JLabel;
+
 public class CalculadoraDeSemelhança {
 	
-	private String texto1;
-	private String texto2;
-	private Set<String> conjTexto1;
-	private Set<String> conjTexto2;
-	private double semelhança;
-	
-	public CalculadoraDeSemelhança(String texto1, String texto2) {		
-		this.texto1 = texto1;
-		this.texto2 = texto2;
-	}	
-	
+	private static String texto1;
+	private static String texto2;
+	private static Set<String> conjTexto1;
+	private static Set<String> conjTexto2;
+	private static double semelhança;
 	
 	protected void setTexto1(String texto1) {
 		this.texto1 = texto1;
 	}
-
-
 
 	protected void setTexto2(String texto2) {
 		this.texto2 = texto2;
 	}
 
 
-	public void calcularSemelhança() {
+	public static double semelhanca() {
 		//passa os textos para letra minúscula
 		String lowTexto1 = texto1.toLowerCase();
 		String lowTexto2 = texto2.toLowerCase();
@@ -77,33 +75,41 @@ public class CalculadoraDeSemelhança {
 			}
 		}
 		
-		semelhança = (double) countPairs / totalWords;
-		
-		System.out.printf("Nível de semelhança = %.4f%n", semelhança);
+		return semelhança = (double) countPairs / totalWords;
 	}
 	
-	public void displayRelatorio() {		
-		System.out.printf("Texto 1: %s%nTexto 2: %s%n", texto1, texto2);
+	public static String relatorio() {
+		String rel = "Nível de semelhança = " + semelhanca() + "\n\n" +
+		"Texto 1: " + texto1 + "\n" +
+		"Texto 2: " + texto2 + "\n" +
+		"Palavras do Texto 1 = " + conjTexto1.toString() + "\n" +
+		"Palavras do Texto 2 = " + conjTexto2.toString() + "\n" +
+		tamanho();
 		
-		System.out.print("Palavras do Texto 1 = {");		
-		for (String word : conjTexto1) {
-			System.out.print(word + " ");
-		}		
-		System.out.println("}");
-		
-		System.out.print("Palavras do Texto 2 = {");		
-		for (String word : conjTexto2) {
-			System.out.print(word + " ");
-		}		
-		System.out.println("}");
-		
+		return rel;
+	}
+	
+	private static String tamanho() {
 		if (conjTexto1.size() > conjTexto2.size()) {
-			System.out.println("Texto 1 > Texto 2\n");
+			return "Texto 1 > Texto 2\n";
 		} else if (conjTexto1.size() < conjTexto2.size()) {
-			System.out.println("Texto 1 < Texto 2\n");
+			return "Texto 1 < Texto 2\n";
 		} else {
-			System.out.println("Texto 1 = Texto 2\n");
+			return "Texto 1 = Texto 2\n";
 		}
 	}
+	public void displayRelatorio(File file) {	
+		PrintStream p = null;
+		try {			
+			p = new PrintStream(file);
+			p.print(relatorio());
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		
+	}
 
+	public void displayRelatorio(JDialog dial) {		
+		dial.add(new JLabel(relatorio()));
+	}	
 }
