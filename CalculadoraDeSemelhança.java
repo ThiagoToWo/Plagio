@@ -6,17 +6,23 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
 
-import javax.swing.JDialog;
-import javax.swing.JLabel;
-
 public class CalculadoraDeSemelhança {
 	
 	private static String texto1;
 	private static String texto2;
+	private static String fonte1;
+	private static String fonte2;
 	private static Set<String> conjTexto1;
 	private static Set<String> conjTexto2;
-	private static double semelhança;
 	
+	protected void setFonte1(String fonte1) {
+		this.fonte1 = fonte1;
+	}
+
+	protected void setFonte2(String fonte2) {
+		this.fonte2 = fonte2;
+	}
+
 	protected void setTexto1(String texto1) {
 		this.texto1 = texto1;
 	}
@@ -75,15 +81,17 @@ public class CalculadoraDeSemelhança {
 			}
 		}
 		
-		return semelhança = (double) countPairs / totalWords;
+		return (double) countPairs / totalWords;
 	}
 	
 	public static String relatorio() {
-		String rel = "Nível de semelhança = " + semelhanca() + "\n\n" +
-		"Texto 1: " + texto1 + "\n" +
-		"Texto 2: " + texto2 + "\n" +
-		"Palavras do Texto 1 = " + conjTexto1.toString() + "\n" +
-		"Palavras do Texto 2 = " + conjTexto2.toString() + "\n" +
+		String rel = "Relatório de semelhança de textos: \n" + 
+		fonte1 + " x " + fonte2 + "\n\n" +		
+		"Nível de semelhança = " + semelhanca() + "\n\n" +
+		"Texto 1: " + texto1 + " - Fonte: " + fonte1 + "\n\n" +
+		"Texto 2: " + texto2 + " - Fonte: " + fonte2 + "\n\n" +
+		"Palavras do Texto 1 = " + conjTexto1.toString() + "\n\n" +
+		"Palavras do Texto 2 = " + conjTexto2.toString() + "\n\n" +
 		tamanho();
 		
 		return rel;
@@ -109,7 +117,4 @@ public class CalculadoraDeSemelhança {
 		
 	}
 
-	public void displayRelatorio(JDialog dial) {		
-		dial.add(new JLabel(relatorio()));
-	}	
 }

@@ -1,31 +1,61 @@
 import java.awt.BorderLayout;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 public class Gui extends JFrame implements ActionListener {
-	JLabel[] jl = {new JLabel("Texto 1:"), new JLabel("Texto 2:")};
-	JTextField[] jtf = {new JTextField("fonte do texto 1"), new JTextField("fonte do texto 2")};
-	JTextArea[] jta = {new JTextArea(40, 60), new JTextArea(40, 60)};
+	
+	private String autor = "Autor: Thiago de Oliveira Alves\ntowo497@gmail.com";
+	private String versao = "Versão: 1.0 \n 02-09-2020\n\n";
+	private JLabel[] jlfonte = {new JLabel("Fonte do texto 1:"), new JLabel("Fonte do texto 2:")};
+	private JLabel[] jl = {new JLabel("Texto 1:"), new JLabel("Texto 2:")};
+	private JTextField[] jtf = {new JTextField(), new JTextField()};
+	private JTextArea[] jta = {new JTextArea(40, 60), new JTextArea(40, 60)};
+	private Font bigFont = new Font(getName(), Font.BOLD, 16);
+	
 	public Gui() {
 		setTitle("Analisador de Plágio");
-		// ceira e configura o painel central.
+		// barra de menu
+		JMenuBar barraDeMenu = new JMenuBar();
+		JMenu menuSobre = new JMenu("Informações");
+		JMenuItem autoria = new JMenuItem("Autor");
+		autoria.addActionListener(new AutorListener());
+		JMenuItem versao = new JMenuItem("Sobre o aplicativo");
+		versao.addActionListener(new VersaoListener());
+		menuSobre.add(autoria);
+		menuSobre.add(versao);
+		barraDeMenu.add(menuSobre);
+		setJMenuBar(barraDeMenu);
+		// cria e configura o painel central.
 		JPanel center  = new JPanel();
 		center.setLayout(new BoxLayout(center, BoxLayout.Y_AXIS));
-		// cria e adiciona os componentes ao painel central.
-		
+		center.setBorder(BorderFactory.createEmptyBorder(10, 10, 10 ,10));
+		// cria e adiciona os componentes ao painel central.		
 		for (int i = 0; i < 2; i++) {
-			center.add(jl[i]);
+			jlfonte[i].setFont(bigFont);
+			jl[i].setFont(bigFont);
+			jtf[i].setFont(bigFont);
+			center.add(jlfonte[i]);
 			center.add(jtf[i]);
+			center.add(jl[i]);
+			jta[i].setFont(bigFont);
 			jta[i].setLineWrap(true);
+			jta[i].setWrapStyleWord(true);
+			jta[i].setBorder(BorderFactory.createEmptyBorder(10, 10, 10 ,10));
 			center.add(new JScrollPane(jta[i]));
 		}
 		getContentPane().add(BorderLayout.CENTER, center);
@@ -41,9 +71,30 @@ public class Gui extends JFrame implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		CalculadoraDeSemelhança cs = new CalculadoraDeSemelhança();
+		cs.setFonte1(jtf[0].getText());
+		cs.setFonte2(jtf[1].getText());
 		cs.setTexto1(jta[0].getText());
 		cs.setTexto2(jta[1].getText());
-		GuiDialog gd = new GuiDialog(this, "Relatório de semelhança entre textos", CalculadoraDeSemelhança.relatorio());
-		cs.displayRelatorio(gd);
+		GuiDialog gd = new GuiDialog(CalculadoraDeSemelhança.relatorio());
 	}
+	
+	private class AutorListener implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {			
+			JOptionPane.showMessageDialog(null, autor, "Sobre mim", JOptionPane.INFORMATION_MESSAGE);
+
+		}
+
+	}
+	
+	private class VersaoListener implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			JOptionPane.showMessageDialog(null, versao, "Sobre este", JOptionPane.INFORMATION_MESSAGE);
+
+		}
+
+	}	
 }
