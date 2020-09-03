@@ -63,6 +63,7 @@ public class Gui extends JFrame implements ActionListener {
 		JPanel south = new JPanel();
 		//cria, configura e adiciona o componente do painel sul.
 		JButton botAval = new JButton("Analisar");
+		botAval.setFont(bigFont);
 		botAval.addActionListener(this);
 		south.add(botAval);
 		getContentPane().add(BorderLayout.SOUTH, south);

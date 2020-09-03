@@ -18,7 +18,8 @@ import javax.swing.JTextArea;
 
 public class GuiDialog extends JFrame implements ActionListener {	
 	
-	JTextArea jta = new JTextArea(80, 60);
+	private JTextArea jta = new JTextArea(80, 60);
+	private Font bigFont = new Font(getName(), Font.BOLD, 16);
 	
 	public GuiDialog(String rel) {
 		setTitle("Relatório de semelhança entre textos");
@@ -29,13 +30,14 @@ public class GuiDialog extends JFrame implements ActionListener {
 		jta.setLineWrap(true);
 		jta.setWrapStyleWord(true);
 		jta.setBorder(BorderFactory.createEmptyBorder(10, 10, 10 ,10));
-		jta.setFont(new Font(getName(), Font.BOLD, 16));
+		jta.setFont(bigFont);
 		jta.setText(rel);
 		center.add(new JScrollPane(jta));
 		getContentPane().add(BorderLayout.CENTER, center);
 		
 		JPanel south = new JPanel();
 		JButton botExpTxt = new JButton("Exportar arquivo de texto");
+		botExpTxt.setFont(bigFont);
 		botExpTxt.addActionListener(this);
 		south.add(botExpTxt);		
 		getContentPane().add(BorderLayout.SOUTH, south);

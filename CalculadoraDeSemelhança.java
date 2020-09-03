@@ -1,10 +1,13 @@
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintStream;
+import java.text.DecimalFormat;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
+
+import javax.swing.text.NumberFormatter;
 
 public class CalculadoraDeSemelhança {
 	
@@ -32,7 +35,7 @@ public class CalculadoraDeSemelhança {
 	}
 
 
-	public static double semelhanca() {
+	public static String semelhanca() {
 		//passa os textos para letra minúscula
 		String lowTexto1 = texto1.toLowerCase();
 		String lowTexto2 = texto2.toLowerCase();
@@ -81,19 +84,36 @@ public class CalculadoraDeSemelhança {
 			}
 		}
 		
-		return (double) countPairs / totalWords;
+		DecimalFormat dfmt = new DecimalFormat();
+		dfmt.setMaximumIntegerDigits(3);
+		dfmt.setMinimumIntegerDigits(1);
+		dfmt.setMaximumFractionDigits(2);
+		dfmt.setMinimumFractionDigits(2);
+		
+		double semelhanca = (double) countPairs / totalWords * 100;
+		
+		return dfmt.format(semelhanca);
 	}
 	
 	public static String relatorio() {
 		String rel = "Relatório de semelhança de textos: \n" + 
-		fonte1 + " x " + fonte2 + "\n\n" +		
-		"Nível de semelhança = " + semelhanca() + "\n\n" +
-		"Texto 1: " + texto1 + " - Fonte: " + fonte1 + "\n\n" +
-		"Texto 2: " + texto2 + " - Fonte: " + fonte2 + "\n\n" +
-		"Palavras do Texto 1 = " + conjTexto1.toString() + "\n\n" +
-		"Palavras do Texto 2 = " + conjTexto2.toString() + "\n\n" +
-		tamanho();
+					 fonte1 + " x " + fonte2 + "\n\n" +		
+					 "Nível de semelhança = " + semelhanca() + "%\n\n" +
+					 "Texto 1: " + texto1 + " - Fonte: " + fonte1 + "\n\n" +
+					 "Texto 2: " + texto2 + " - Fonte: " + fonte2 + "\n\n" +
+					 "Palavras do Texto 1 = " + conjTexto1.toString() + "\n\n" +
+					 "Palavras do Texto 2 = " + conjTexto2.toString() + "\n\n" +
+					 tamanho();
 		
+		/*fmt.format("Relatório de semelhança de textos: \n" + 
+				"%s" + " x " + "%s" + "\n\n" +		
+				"Nível de semelhança = " + "%.2f" + "%\n\n" +
+				"Texto 1: " + "%s" + " - Fonte: " + "%s" + "\n\n" +
+				"Texto 2: " + "%s" + " - Fonte: " + "%s" + "\n\n" +
+				"Palavras do Texto 1 = " + "%s" + "\n\n" +
+				"Palavras do Texto 2 = " + "%s" + "\n\n" +
+				"%s", fonte1, fonte2, semelhanca(), texto1, fonte1, fonte2, texto2, conjTexto1.toString()
+				, conjTexto2.toString(), tamanho());*/
 		return rel;
 	}
 	
