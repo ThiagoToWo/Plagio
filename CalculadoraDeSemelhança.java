@@ -7,11 +7,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
 
-<<<<<<< HEAD
 public class CalculadoraDeSemelhan�a {
-=======
-public class CalculadoraDeSemelhança {
->>>>>>> d2b2a90f2f9379eb16dac451ce1c354154c211be
 	
 	private static String texto1;
 	private static String texto2;
@@ -38,7 +34,7 @@ public class CalculadoraDeSemelhança {
 
 
 	public static String semelhanca() {
-		//passa os textos para letra minúscula
+		//passa os textos para letra min�scula
 		String lowTexto1 = texto1.toLowerCase();
 		String lowTexto2 = texto2.toLowerCase();
 		
@@ -98,31 +94,14 @@ public class CalculadoraDeSemelhança {
 	}
 	
 	public static String relatorio() {
-<<<<<<< HEAD
 		String rel = "Relat�rio de semelhan�a entre textos: \n" + 
-=======
-		String rel = "Relatório de semelhança de textos: \n" + 
->>>>>>> d2b2a90f2f9379eb16dac451ce1c354154c211be
 					 fonte1 + " x " + fonte2 + "\n\n" +		
-					 "Nível de semelhança = " + semelhanca() + "%\n\n" +
+					 "N�vel de semelhan�a = " + semelhanca() + "%\n\n" +
 					 "Texto 1: " + texto1 + " - Fonte: " + fonte1 + "\n\n" +
 					 "Texto 2: " + texto2 + " - Fonte: " + fonte2 + "\n\n" +
 					 "Palavras do Texto 1 = " + conjTexto1.toString() + "\n\n" +
 					 "Palavras do Texto 2 = " + conjTexto2.toString() + "\n\n" +
 					 tamanho();
-<<<<<<< HEAD
-=======
-		
-		/*fmt.format("Relatório de semelhança de textos: \n" + 
-				"%s" + " x " + "%s" + "\n\n" +		
-				"Nível de semelhança = " + "%.2f" + "%\n\n" +
-				"Texto 1: " + "%s" + " - Fonte: " + "%s" + "\n\n" +
-				"Texto 2: " + "%s" + " - Fonte: " + "%s" + "\n\n" +
-				"Palavras do Texto 1 = " + "%s" + "\n\n" +
-				"Palavras do Texto 2 = " + "%s" + "\n\n" +
-				"%s", fonte1, fonte2, semelhanca(), texto1, fonte1, fonte2, texto2, conjTexto1.toString()
-				, conjTexto2.toString(), tamanho());*/
->>>>>>> d2b2a90f2f9379eb16dac451ce1c354154c211be
 		return rel;
 	}
 	
