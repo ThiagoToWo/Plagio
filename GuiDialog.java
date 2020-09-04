@@ -18,6 +18,7 @@ import javax.swing.JTextArea;
 
 public class GuiDialog extends JFrame implements ActionListener {	
 	
+	private static final long serialVersionUID = 1L;
 	private JTextArea jta = new JTextArea(80, 60);
 	private Font bigFont = new Font(getName(), Font.BOLD, 16);
 	

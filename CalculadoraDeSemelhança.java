@@ -7,8 +7,6 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
 
-import javax.swing.text.NumberFormatter;
-
 public class CalculadoraDeSemelhança {
 	
 	private static String texto1;
@@ -96,7 +94,7 @@ public class CalculadoraDeSemelhança {
 	}
 	
 	public static String relatorio() {
-		String rel = "Relatório de semelhança de textos: \n" + 
+		String rel = "Relatório de semelhança entre textos: \n" + 
 					 fonte1 + " x " + fonte2 + "\n\n" +		
 					 "Nível de semelhança = " + semelhanca() + "%\n\n" +
 					 "Texto 1: " + texto1 + " - Fonte: " + fonte1 + "\n\n" +
@@ -104,16 +102,6 @@ public class CalculadoraDeSemelhança {
 					 "Palavras do Texto 1 = " + conjTexto1.toString() + "\n\n" +
 					 "Palavras do Texto 2 = " + conjTexto2.toString() + "\n\n" +
 					 tamanho();
-		
-		/*fmt.format("Relatório de semelhança de textos: \n" + 
-				"%s" + " x " + "%s" + "\n\n" +		
-				"Nível de semelhança = " + "%.2f" + "%\n\n" +
-				"Texto 1: " + "%s" + " - Fonte: " + "%s" + "\n\n" +
-				"Texto 2: " + "%s" + " - Fonte: " + "%s" + "\n\n" +
-				"Palavras do Texto 1 = " + "%s" + "\n\n" +
-				"Palavras do Texto 2 = " + "%s" + "\n\n" +
-				"%s", fonte1, fonte2, semelhanca(), texto1, fonte1, fonte2, texto2, conjTexto1.toString()
-				, conjTexto2.toString(), tamanho());*/
 		return rel;
 	}
 	
@@ -126,6 +114,7 @@ public class CalculadoraDeSemelhança {
 			return "Texto 1 = Texto 2\n";
 		}
 	}
+	
 	public void displayRelatorio(File file) {	
 		PrintStream p = null;
 		try {			
