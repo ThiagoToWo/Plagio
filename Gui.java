@@ -77,7 +77,7 @@ public class Gui extends JFrame implements ActionListener {
 		cs.setFonte2(jtf[1].getText());
 		cs.setTexto1(jta[0].getText());
 		cs.setTexto2(jta[1].getText());
-		GuiDialog gd = new GuiDialog(CalculadoraDeSemelhança.relatorio());
+		GuiDialog gd = new GuiDialog(cs.relatorio());
 	}
 	
 	private class AutorListener implements ActionListener {
