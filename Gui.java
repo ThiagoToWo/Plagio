@@ -72,11 +72,8 @@ public class Gui extends JFrame implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		CalculadoraDeSemelhança cs = new CalculadoraDeSemelhança();
-		cs.setFonte1(jtf[0].getText());
-		cs.setFonte2(jtf[1].getText());
-		cs.setTexto1(jta[0].getText());
-		cs.setTexto2(jta[1].getText());
+		CalculadoraDeSemelhança cs = new CalculadoraDeSemelhança(jtf[0].getText(), jta[0].getText(),
+				jtf[1].getText(), jta[1].getText());
 		GuiDialog gd = new GuiDialog(cs.relatorio());
 	}
 	
