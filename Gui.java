@@ -21,7 +21,7 @@ public class Gui extends JFrame implements ActionListener {
 	
 	private static final long serialVersionUID = 1L;
 	private String autor = "Autor: Thiago de Oliveira Alves\ntowo497@gmail.com";
-	private String versao = "Versão: 1.0 \n 02-09-2020\n\n";
+	private String versao = "Versão: 0.0 \n 08-09-2020\n\n";
 	private JLabel[] jlfonte = {new JLabel("Fonte do texto 1:"), new JLabel("Fonte do texto 2:")};
 	private JLabel[] jl = {new JLabel("Texto 1:"), new JLabel("Texto 2:")};
 	private JTextField[] jtf = {new JTextField(), new JTextField()};
@@ -74,7 +74,7 @@ public class Gui extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		CalculadoraDeSemelhança cs = new CalculadoraDeSemelhança(jtf[0].getText(), jta[0].getText(),
 				jtf[1].getText(), jta[1].getText());
-		GuiDialog gd = new GuiDialog(cs.relatorio());
+		new GuiDialog(cs.relatorio());
 	}
 	
 	private class AutorListener implements ActionListener {
