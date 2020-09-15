@@ -17,8 +17,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
-public class Gui extends JFrame implements ActionListener {
-	
+public class Gui extends JFrame implements ActionListener {	
+
 	private static final long serialVersionUID = 1L;
 	private String autor = "Autor: Thiago de Oliveira Alves\ntowo497@gmail.com";
 	private String versao = "Versão: 0.0 \n 08-09-2020\n\n";
@@ -39,7 +39,12 @@ public class Gui extends JFrame implements ActionListener {
 		versao.addActionListener(new VersaoListener());
 		menuSobre.add(autoria);
 		menuSobre.add(versao);
+		JMenu menuFerramentas = new JMenu("Ferramentas");
+		JMenuItem biblioteca = new JMenuItem("Biblioteca");
+		biblioteca.addActionListener(new BibListener());
+		menuFerramentas.add(biblioteca);
 		barraDeMenu.add(menuSobre);
+		barraDeMenu.add(menuFerramentas);
 		setJMenuBar(barraDeMenu);
 		// cria e configura o painel central.
 		JPanel center  = new JPanel();
@@ -96,4 +101,14 @@ public class Gui extends JFrame implements ActionListener {
 		}
 
 	}	
+	
+	public class BibListener implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			new GuiBiblioteca();
+
+		}
+
+	}
 }

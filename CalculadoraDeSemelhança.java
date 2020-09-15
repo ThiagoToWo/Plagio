@@ -83,7 +83,7 @@ public class CalculadoraDeSemelhança {
 	}
 	
 	// calcula a porcentagem de palavras comuns aos dois textos em relação ao total de palavras diferentes
-	private String semelhanca() {		
+	public String semelhanca() {		
 		
 		DecimalFormat dfmt = new DecimalFormat();
 		dfmt.setMaximumIntegerDigits(3);

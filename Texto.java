@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Set;
 import java.util.StringTokenizer;
 import java.util.TreeSet;
@@ -11,6 +12,8 @@ public class Texto {
 	private StringTokenizer stk; // tokenizer do texto
 	private StringTokenizer lowStk; // tokenizer do lowTexto
 	private Set<String> conjTexto; // conjunto de palavras diferentes do texto 
+	private ArrayList<String> listaSemelhanca = new ArrayList<String>();
+	private ArrayList<String> listaRelatorio = new ArrayList<String>();
 	
 	public Texto(String fonte, String texto) {
 		// configura as fontes e os textos
@@ -35,7 +38,20 @@ public class Texto {
 			conjTexto.add(lowStk.nextToken());
 		}
 	}
-
+	
+	protected String getListaSemelhanca(int i) {
+		return listaSemelhanca.get(i);
+	}
+	// alimenta a lista de semelhança com outros textos
+	protected void setListaSemelhanca(String texto) {
+		listaSemelhanca.add(texto);
+	}
+	
+	// alimenta a lista de relatórios com outros textos
+	protected void setListaRelatorio(String texto) {
+		listaRelatorio.add(texto);
+	}
+	
 	// retorna a fonte do texto
 	protected String getFonte() {
 		return fonte;
