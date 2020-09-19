@@ -1,3 +1,4 @@
+package Classes;
 import java.util.ArrayList;
 import java.util.Set;
 import java.util.StringTokenizer;
@@ -12,8 +13,9 @@ public class Texto {
 	private StringTokenizer stk; // tokenizer do texto
 	private StringTokenizer lowStk; // tokenizer do lowTexto
 	private Set<String> conjTexto; // conjunto de palavras diferentes do texto 
-	private ArrayList<String> listaSemelhanca = new ArrayList<String>();
-	private ArrayList<String> listaRelatorio = new ArrayList<String>();
+	private ArrayList<String> listaSemelhanca = new ArrayList<String>(); // lista de semelhanças entre outros textos
+	private ArrayList<Double> listaSemelhancaDb = new ArrayList<Double>(); // lista de semelhanças entre outros textos
+	private ArrayList<String> listaRelatorio = new ArrayList<String>(); // lista de relatórios entre outros textos
 	
 	public Texto(String fonte, String texto) {
 		// configura as fontes e os textos
@@ -39,6 +41,7 @@ public class Texto {
 		}
 	}
 	
+	// retorna a semelhança com o texto de posição i
 	protected String getListaSemelhanca(int i) {
 		return listaSemelhanca.get(i);
 	}
@@ -46,7 +49,22 @@ public class Texto {
 	protected void setListaSemelhanca(String texto) {
 		listaSemelhanca.add(texto);
 	}
-	
+
+	// retorna a semelhança com o texto de posição i
+	protected Double getListaSemelhancaDb(int i) {
+		return listaSemelhancaDb.get(i);
+	}
+
+	// alimenta a lista de semelhança com outros textos
+	protected void setListaSemelhancaDb(Double texto) {
+		listaSemelhancaDb.add(texto);
+	}
+
+	// retorna o relatório com o texto de posição i
+	protected String getListaRelatorio(int i) {
+		return listaRelatorio.get(i);
+	}
+
 	// alimenta a lista de relatórios com outros textos
 	protected void setListaRelatorio(String texto) {
 		listaRelatorio.add(texto);

@@ -1,3 +1,4 @@
+package Classes;
 import java.text.DecimalFormat;
 import java.util.HashMap;
 import java.util.Map;
@@ -83,6 +84,7 @@ public class CalculadoraDeSemelhança {
 	}
 	
 	// calcula a porcentagem de palavras comuns aos dois textos em relação ao total de palavras diferentes
+	// em String
 	public String semelhanca() {		
 		
 		DecimalFormat dfmt = new DecimalFormat();
@@ -95,7 +97,17 @@ public class CalculadoraDeSemelhança {
 		
 		return dfmt.format(semelhanca) + "%";
 	}
-	
+
+	// calcula a porcentagem de palavras comuns aos dois textos em relação ao total
+	// de palavras diferentes
+	// em Double
+	public Double semelhancaDouble() {
+
+		double semelhanca = (double) conjTextoComum.size() / totalWords * 100;
+
+		return semelhanca;
+	}
+
 	// emite um relatório com a análise do texto
 	public String relatorio() {
 		

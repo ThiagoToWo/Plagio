@@ -1,3 +1,4 @@
+package Gui;
 import java.awt.BorderLayout;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -16,6 +17,8 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+
+import Classes.CalculadoraDeSemelhança;
 
 public class Gui extends JFrame implements ActionListener {	
 
@@ -79,7 +82,7 @@ public class Gui extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		CalculadoraDeSemelhança cs = new CalculadoraDeSemelhança(jtf[0].getText(), jta[0].getText(),
 				jtf[1].getText(), jta[1].getText());
-		new GuiDialog(cs.relatorio());
+		new DialogRelatorio(cs.relatorio());
 	}
 	
 	private class AutorListener implements ActionListener {

@@ -1,3 +1,4 @@
+package Gui;
 import java.awt.BorderLayout;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -16,13 +17,13 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
-public class GuiDialog extends JFrame implements ActionListener {	
+public class DialogRelatorio extends JFrame implements ActionListener {	
 	
 	private static final long serialVersionUID = 1L;
 	private JTextArea jta = new JTextArea(80, 60);
 	private Font bigFont = new Font(getName(), Font.BOLD, 16);
 	
-	public GuiDialog(String rel) {
+	public DialogRelatorio(String rel) {
 		setTitle("Relatório de semelhança entre textos");
 		
 		JPanel center  = new JPanel();

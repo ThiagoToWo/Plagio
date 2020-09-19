@@ -1,4 +1,7 @@
+package Main;
 import javax.swing.JFrame;
+
+import Gui.Gui;
 
 public class MainPlagio {
 
