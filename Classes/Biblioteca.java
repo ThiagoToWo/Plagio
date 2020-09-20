@@ -1,4 +1,10 @@
 package Classes;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
 public class Biblioteca {
@@ -26,22 +32,30 @@ public class Biblioteca {
 		}
 	}
 
-	/* alimentar a matriz com as semelhanças entre cada texto da bilblioteca
-	public static void buildMatrizSemelhanca() {
-		mtxSem = new String[listaTexto.size()][listaTexto.size()];
-
-		for (int i = 0; i < mtxSem.length; i++) {
-			for (int j = 0; j < mtxSem[i].length; j++) {
-				mtxSem[i][j] = listaTexto.get(i).getListaSemelhanca(j);
-			}
+	// salva a lista de Textos da biblioteca
+	public static void salvar(File file) {		
+		try {
+			ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream(file));
+			os.writeObject(listaTexto);
+			os.close();
+		} catch (IOException e1) {
+			e1.printStackTrace();
 		}
 	}
 	
-	 retorna um valor de semelhança entre o texto i e j na lista de textos.
-	public static String getMatrizSemelhanca(int i, int j) {		
-		return mtxSem[i][j];		
-	}*/
-	
+	// carrega uma lista de Textos e substitui a da Biblioteca
+	public static void carregar(File file) {
+		try {
+			ObjectInputStream os = new ObjectInputStream(new FileInputStream(file));
+			@SuppressWarnings("unchecked")
+			ArrayList<Texto> lt = (ArrayList<Texto>) os.readObject();
+			listaTexto.clear();
+			listaTexto.addAll(lt);
+			os.close();
+		} catch (IOException | ClassNotFoundException e1) {
+			e1.printStackTrace();
+		}
+	}
 	// limpa a lista de textos
 	public static void limpar() {
 		listaTexto.clear();

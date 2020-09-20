@@ -15,8 +15,9 @@ import javax.swing.JPanel;
 
 import Classes.Biblioteca;
 
-public class DialogComparador extends JFrame {		
-
+public class DialogComparador extends JFrame {
+	
+	private static final long serialVersionUID = 1L;
 	private JComboBox<String> fonteChooser1;
 	private JComboBox<String> fonteChooser2;
 	int fonte1;

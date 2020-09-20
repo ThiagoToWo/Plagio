@@ -24,8 +24,9 @@ import javax.swing.JTextField;
 import Classes.Biblioteca;
 import Classes.Texto;
 
-public class GuiBiblioteca extends JFrame {	
+public class GuiBiblioteca extends JFrame {		
 
+	private static final long serialVersionUID = 1L;
 	private JLabel jlfonte = new JLabel("Fonte do texto: ");
 	private JLabel jl = new JLabel("Texto: ");
 	private JTextField jtf = new JTextField();
@@ -44,9 +45,17 @@ public class GuiBiblioteca extends JFrame {
 		mapa.addActionListener(new MapaListener());
 		JMenuItem mapaRestrito = new JMenuItem("Mapa com tolerância");
 		mapaRestrito.addActionListener(new MapaRestListener());
+		JMenu arquivo = new JMenu("Arquivo");
+		JMenuItem salvar  = new JMenuItem("Salvar biblioteca"); 
+		salvar.addActionListener(new SalvarListener());
+		JMenuItem carregar  = new JMenuItem("Carregar biblioteca"); 
+		carregar.addActionListener(new CarregarListener());
+		arquivo.add(salvar);
+		arquivo.add(carregar);
 		menu.add(comparar);
 		menu.add(mapa);
 		menu.add(mapaRestrito);
+		menuBar.add(arquivo);
 		menuBar.add(menu);
 		setJMenuBar(menuBar);
 		// cria e configura o painel central.
@@ -75,7 +84,7 @@ public class GuiBiblioteca extends JFrame {
 		JButton botLimp = new JButton("Limpar biblioteca");
 		botLimp.setFont(bigFont);
 		botLimp.addActionListener(new LimparListener());
-		labAdd = new JLabel(" Textos = 0");
+		labAdd = new JLabel(" Textos = " + Biblioteca.getSize());
 		labAdd.setFont(bigFont);
 		south.add(botAdd);
 		south.add(botLimp);
@@ -141,13 +150,7 @@ public class GuiBiblioteca extends JFrame {
 				
 				for (int i = 0; i < Biblioteca.getSize(); i++) {
 					for (int j = 0; j < Biblioteca.getSize(); j++) {
-						if (i == j) {
-							ps.printf("%3d|%3d ", i + 1, j + 1); // legenda da linha
-							ps.print(Biblioteca.getSemelhanca(i, j)); // a semelhança
-						} else {
-							ps.printf("%3d|%4d ", i + 1, j + 1); // legenda da linha
-							ps.print(Biblioteca.getSemelhanca(i, j)); // a semelhança
-						}
+						ps.printf("%3d|%3d %3.2f%% ", i + 1, j + 1, Biblioteca.getSemelhancaDb(i, j));
 					}
 					ps.println("\n"); // pula duas linhas
 				}
@@ -197,6 +200,29 @@ public class GuiBiblioteca extends JFrame {
 			} catch (FileNotFoundException e1) {
 				e1.printStackTrace();
 			}
+		}
+
+	}
+	
+	public class CarregarListener implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			JFileChooser load = new JFileChooser();
+			load.showOpenDialog(getParent());
+			Biblioteca.carregar(load.getSelectedFile());
+			labAdd.setText(" Textos = " + Biblioteca.getSize());
+		}
+
+	}
+
+	public class SalvarListener implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			JFileChooser save = new JFileChooser();
+			save.showSaveDialog(getParent());
+			Biblioteca.salvar(save.getSelectedFile());
 		}
 
 	}

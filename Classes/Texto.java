@@ -1,17 +1,19 @@
 package Classes;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Set;
 import java.util.StringTokenizer;
 import java.util.TreeSet;
 
-public class Texto {
+public class Texto implements Serializable {
 	
+	private static final long serialVersionUID = 1L;
 	private String fonte; // fonte do texto
 	private String texto; // texto 	
 	private String lowTexto; // texto com todas as letras minúsculas
 	private String formatTexto; // texto com a maior subsequência comum marcada
-	private StringTokenizer stk; // tokenizer do texto
-	private StringTokenizer lowStk; // tokenizer do lowTexto
+	private transient StringTokenizer stk; // tokenizer do texto
+	private transient StringTokenizer lowStk; // tokenizer do lowTexto
 	private Set<String> conjTexto; // conjunto de palavras diferentes do texto 
 	private ArrayList<String> listaSemelhanca = new ArrayList<String>(); // lista de semelhanças entre outros textos
 	private ArrayList<Double> listaSemelhancaDb = new ArrayList<Double>(); // lista de semelhanças entre outros textos
@@ -105,6 +107,7 @@ public class Texto {
 		return conjTexto.toString();
 	}
 
+	// retorna uma palavra específica do conjunto de palavras diferentes do texto separadas pelo StringTokenizer
 	public String getConjTexto(int i) {
 		String[] conjTxt = conjTexto.toArray(new String[conjTexto.size()]);
 		return conjTxt[i];
