@@ -183,9 +183,9 @@ public class GuiBiblioteca extends JFrame {
 				PrintStream ps = new PrintStream(mapaRest.getSelectedFile());
 				
 				ps.println("Mapa de Semelhança " + mapaRest.getSelectedFile().getName() + "\n"); // título
-				
+				ps.printf("Semelhança mínima = %.2f%%%n%n", dbSem);
 				for (int i = 0; i < Biblioteca.getSize(); i++) {
-					for (int j = 0; j < Biblioteca.getSize(); j++) {
+					for (int j = i + 1; j < Biblioteca.getSize(); j++) {
 						if (Biblioteca.getSemelhancaDb(i, j) >= dbSem) { // retorna apenas as semelhanças maiores ou iguais a informada
 							ps.printf("%s x %s = %.2f%%%n", Biblioteca.getFontes()[i + 1],
 									Biblioteca.getFontes()[j + 1], Biblioteca.getSemelhancaDb(i, j));
