@@ -24,7 +24,7 @@ public class Gui extends JFrame implements ActionListener {
 
 	private static final long serialVersionUID = 1L;
 	private String autor = "Autor: Thiago de Oliveira Alves\ntowo497@gmail.com";
-	private String versao = "Versão: 0.0 \n 08-09-2020\n\n";
+	private String versao = "Versão: 1.0 \n 21-09-2020\n\n";
 	private JLabel[] jlfonte = {new JLabel("Fonte do texto 1:"), new JLabel("Fonte do texto 2:")};
 	private JLabel[] jl = {new JLabel("Texto 1:"), new JLabel("Texto 2:")};
 	private JTextField[] jtf = {new JTextField(), new JTextField()};
@@ -36,14 +36,19 @@ public class Gui extends JFrame implements ActionListener {
 		// barra de menu
 		JMenuBar barraDeMenu = new JMenuBar();
 		JMenu menuSobre = new JMenu("Informações");
+		menuSobre.setFont(bigFont);
 		JMenuItem autoria = new JMenuItem("Autor");
+		autoria.setFont(bigFont);
 		autoria.addActionListener(new AutorListener());
 		JMenuItem versao = new JMenuItem("Sobre o aplicativo");
+		versao.setFont(bigFont);
 		versao.addActionListener(new VersaoListener());
 		menuSobre.add(autoria);
 		menuSobre.add(versao);
 		JMenu menuFerramentas = new JMenu("Ferramentas");
+		menuFerramentas.setFont(bigFont);
 		JMenuItem biblioteca = new JMenuItem("Biblioteca");
+		biblioteca.setFont(bigFont);
 		biblioteca.addActionListener(new BibListener());
 		menuFerramentas.add(biblioteca);
 		barraDeMenu.add(menuSobre);

@@ -39,16 +39,23 @@ public class GuiBiblioteca extends JFrame {
 		// barra de menu
 		JMenuBar menuBar = new JMenuBar();
 		JMenu menu = new JMenu("Menu");
+		menu.setFont(bigFont);
 		JMenuItem comparar = new JMenuItem("Comparar por fontes");
+		comparar.setFont(bigFont);
 		comparar.addActionListener(new CompararListener());
 		JMenuItem mapa = new JMenuItem("Mapa");
+		mapa.setFont(bigFont);
 		mapa.addActionListener(new MapaListener());
 		JMenuItem mapaRestrito = new JMenuItem("Mapa com tolerância");
+		mapaRestrito.setFont(bigFont);
 		mapaRestrito.addActionListener(new MapaRestListener());
 		JMenu arquivo = new JMenu("Arquivo");
+		arquivo.setFont(bigFont);
 		JMenuItem salvar  = new JMenuItem("Salvar biblioteca"); 
+		salvar.setFont(bigFont);
 		salvar.addActionListener(new SalvarListener());
-		JMenuItem carregar  = new JMenuItem("Carregar biblioteca"); 
+		JMenuItem carregar  = new JMenuItem("Carregar biblioteca");
+		carregar.setFont(bigFont);
 		carregar.addActionListener(new CarregarListener());
 		arquivo.add(salvar);
 		arquivo.add(carregar);
@@ -150,13 +157,14 @@ public class GuiBiblioteca extends JFrame {
 				
 				for (int i = 0; i < Biblioteca.getSize(); i++) {
 					for (int j = 0; j < Biblioteca.getSize(); j++) {
-						ps.printf("%3d|%3d %3.2f%% ", i + 1, j + 1, Biblioteca.getSemelhancaDb(i, j));
+						ps.printf("(%3d,%3d)%8s", i + 1, j + 1, Biblioteca.getSemelhanca(i, j));
+						ps.print("\t");
 					}
 					ps.println("\n"); // pula duas linhas
 				}
 				
 				for (int i = 1; i <= Biblioteca.getSize(); i++) { // imprime a legenda de fontes
-					ps.printf("%d. %s.\n", i, Biblioteca.getFontes()[i]);
+					ps.printf("%3d. %s.\n", i, Biblioteca.getFontes()[i]);
 				}
 				ps.close();
 				

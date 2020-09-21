@@ -100,8 +100,8 @@ public class CalculadoraDeSemelhança {
 
 	// calcula a porcentagem de palavras comuns aos dois textos em relação ao total
 	// de palavras diferentes
-	// em Double
-	public Double semelhancaDouble() {
+	// em double
+	public double semelhancaDouble() {
 
 		double semelhanca = (double) conjTextoComum.size() / totalWords * 100;
 
