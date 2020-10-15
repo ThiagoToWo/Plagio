@@ -12,7 +12,6 @@ public class Biblioteca {
 	private static CalculadoraDeSemelhança calc;
 	private static ArrayList<Texto> listaTexto = new ArrayList<Texto>();
 	private static String[] fontes;
-	//private static String[][] mtxSem;	
 	
 	// adicionar textos na biblioteca
 	public static void addTexto(Texto txt) {

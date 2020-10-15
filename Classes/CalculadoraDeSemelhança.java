@@ -73,7 +73,11 @@ public class CalculadoraDeSemelhança {
 			}
 		}
 		
-		maxSubseq = (String) texto1.substring(x + 1 - maxLen, x + 1); // ou maxSubseq = (String) texto2.substring(j + 1 - maxLen, j + 1);
+		if (x > 0) {
+			maxSubseq = (String) texto1.substring(x + 1 - maxLen, x + 1); // ou maxSubseq = (String) texto2.substring(j + 1 - maxLen, j + 1);
+		} else {
+			maxSubseq = "";
+		}		
 		
 		// marca a maior subsequência comum nos dois textos
 		this.texto1.setFormatTexto(texto1.replace(maxSubseq, maxSubseq.toUpperCase()));
